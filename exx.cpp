@@ -123,13 +123,13 @@ int main() {
     sf::Sound sonCollision;
     sonCollision.setBuffer(bufferCollision);
 
-    sf::SoundBuffer bufferSaut;
+    /*sf::SoundBuffer bufferSaut;
     if (!bufferSaut.loadFromFile("saut.wav")) {
         std::cerr << "Erreur : Impossible de charger l'effet sonore de saut !" << std::endl;
         return -1;
     }
     sf::Sound sonSaut;
-    sonSaut.setBuffer(bufferSaut);
+    sonSaut.setBuffer(bufferSaut);*/
 
     float solY = 500.f;
 
@@ -259,7 +259,7 @@ int main() {
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
                 monVelo.sauter();
-                sonSaut.play(); // Effet sonore de saut
+                //sonSaut.play(); // Effet sonore de saut
             }
 
             monVelo.appliquerGravite(0.4f, solY);
