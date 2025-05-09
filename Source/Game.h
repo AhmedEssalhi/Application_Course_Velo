@@ -2,6 +2,8 @@
 #define GAME_H
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include <iostream>
 #include "Car.h"
 #include "Obstacle.h"
 #include "Map.h"
@@ -17,7 +19,14 @@ private:
     sf::Clock obstacleClock;
     float obstacleSpawnTime;
     sf::Texture backgroundTexture;
-    sf::Sprite backgroundSprite;    
+    sf::Sprite backgroundSprite; 
+    sf::Music backgroundMusic;
+    sf::SoundBuffer collisionBuffer;
+    sf::Sound collisionSound;
+
+    sf::Font font;
+    sf::Text scoreText;
+    int score;   
 
 public:
     Game();
