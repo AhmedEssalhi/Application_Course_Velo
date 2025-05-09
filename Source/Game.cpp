@@ -5,10 +5,10 @@ Game::Game() :
     player(
         window.getSize().x / 2,
         window.getSize().y - 100, 2.f), 
-        road("assets/road/road.png", 2.0f) 
+        road("assets/road/road.png", 1.5f) 
 {
     score = 0;
-    obstacleSpawnTime = 2.0f;
+    obstacleSpawnTime = 1.0f;
 
     state = GameState::MainMenu;
     if (!backgroundTexture.loadFromFile("assets/backgrounds/menu.png")) {
@@ -79,14 +79,16 @@ void Game::update() {
         road.update();
         player.update();
         score += 1;
+        score %= 33;
         //player.draw(window);
 
         if (obstacleClock.getElapsedTime().asSeconds() > obstacleSpawnTime) {
-            obstacles.push_back(Obstacle("assets/obstacle/rock.png", rand() % 700, -50, 1.0f));
+            obstacles.push_back(Obstacle("assets/obstacle/rock.png", rand() % 700, -50, .5f));
             obstacleClock.restart();
         }
 
         for (auto& obstacle : obstacles) {
+            hearts = 3;
             obstacle.update();
             if (obstacle.checkCollision(player.getBounds()))
                 changeState(GameState::GameOver);

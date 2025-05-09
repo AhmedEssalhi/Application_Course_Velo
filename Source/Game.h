@@ -23,6 +23,7 @@ private:
     sf::Music backgroundMusic;
     sf::SoundBuffer collisionBuffer;
     sf::Sound collisionSound;
+    int hearts = 3;
 
     sf::Font font;
     sf::Text scoreText;
