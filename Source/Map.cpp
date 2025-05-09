@@ -1,8 +1,9 @@
 #include "Map.h"
+#include <iostream>
 
 Map::Map(const std::string& texturePath, float scrollSpeed) {
     if (!roadTexture.loadFromFile(texturePath)) {
-        throw std::runtime_error("Failed to load texture");
+        std::cerr << "Failed to load texture" << std::endl;
     }
 
     roadSprite1.setTexture(roadTexture);

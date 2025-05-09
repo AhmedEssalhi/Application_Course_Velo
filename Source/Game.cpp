@@ -25,7 +25,7 @@ Game::Game() :
     backgroundMusic.play();
 
     if (!font.loadFromFile("assets/font/font.ttf")) {
-        throw std::runtime_error("Failed to load font!");
+        std::cerr << "Failed to load font!" << std::endl;
     }
 
     scoreText.setFont(font);

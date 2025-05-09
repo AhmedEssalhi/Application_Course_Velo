@@ -1,8 +1,9 @@
 #include "Obstacle.h"
+#include <iostream>
 
 Obstacle::Obstacle(const std::string& texturePath, float x, float y, float moveSpeed) {
     if (!texture.loadFromFile("assets/obstacle/rock.png")) {
-        throw std::runtime_error("Failed to load texture");
+        std::cerr << "Failed to load texture" << std::endl;
     }
     sprite.setTexture(texture);
     sprite.setPosition(x, y);
@@ -14,6 +15,7 @@ void Obstacle::update() {
 }
 
 void Obstacle::draw(sf::RenderWindow& window) {
+    sprite.setTexture(texture);
     window.draw(sprite);
 }
 

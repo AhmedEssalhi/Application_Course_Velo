@@ -1,8 +1,9 @@
 #include "Car.h"
+#include <iostream>
 
 Car::Car(float x, float y, float moveSpeed) {
     if (!texture.loadFromFile("assets/cars/car3.png")) {
-        throw std::runtime_error("Failed to load texture");
+        std::cerr << "Failed to load texture" << std::endl;
     }
     sprite.setTexture(texture);
     sprite.setPosition(x, y);
@@ -24,6 +25,7 @@ void Car::update() {
 }
 
 void Car::draw(sf::RenderWindow& window) {
+    sprite.setTexture(texture);
     window.draw(sprite);
 }
 
