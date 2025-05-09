@@ -1,3 +1,6 @@
+#ifndef CAR_HPP
+#define CAR_HPP
+
 #include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace sf;
@@ -12,7 +15,9 @@ class Car
 
     public:
     Car(const string &textureFilePath, float cordX, float cordY, float playerSpeed);
+    void update();
     void draw(RenderWindow &window);
-    void move(float cordX, float cordY);
     FloatRect getBounds() const;
 };
+
+#endif

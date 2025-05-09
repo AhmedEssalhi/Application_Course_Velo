@@ -46,7 +46,6 @@ int main() {
 		vehiculeSprite.getScale().y * 0.8f
 	);
 
-
 	// Optionally scale to fit the window
 	gameBackgroundSprite.setScale(
 		window.getSize().x / gameBackgroundSprite.getGlobalBounds().width,

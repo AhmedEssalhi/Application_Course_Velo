@@ -3,14 +3,14 @@
 
 #include <SFML/Graphics.hpp>
 
-class Map {
+class Road {
 private:
     sf::Texture roadTexture;
     sf::Sprite roadSprite1, roadSprite2;
     float speed;
 
 public:
-    Map(const std::string& texturePath, float scrollSpeed);
+    Road(const std::string& texturePath, float scrollSpeed);
     void update();
     void draw(sf::RenderWindow& window);
 };

@@ -1,7 +1,7 @@
-#include "Obstacle.h"
+#include "obstacle.hpp"
 
 Obstacle::Obstacle(const std::string& texturePath, float x, float y, float moveSpeed) {
-    if (!texture.loadFromFile("assets/obstacle/rock.png")) {
+    if (!texture.loadFromFile(texturePath)) {
         throw std::runtime_error("Failed to load texture");
     }
     sprite.setTexture(texture);
@@ -10,7 +10,7 @@ Obstacle::Obstacle(const std::string& texturePath, float x, float y, float moveS
 }
 
 void Obstacle::update() {
-    sprite.move(0, speed);
+    sprite.move(0, speed); // Move downward
 }
 
 void Obstacle::draw(sf::RenderWindow& window) {
@@ -24,7 +24,6 @@ sf::FloatRect Obstacle::getBounds() const {
 bool Obstacle::isOffScreen() const {
     return sprite.getPosition().y > 800;
 }
-
 bool Obstacle::checkCollision(const sf::FloatRect& playerBounds) const {
     return sprite.getGlobalBounds().intersects(playerBounds);
 }

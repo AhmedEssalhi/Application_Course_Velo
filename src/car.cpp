@@ -17,12 +17,24 @@ void Car::draw(RenderWindow &window)
     window.draw(sprite);
 }
 
-void Car::move(float cordX, float cordY)
-{
-    sprite.move(cordX * speed, cordY * speed);
-}
-
 FloatRect Car::getBounds() const
 {
     return sprite.getGlobalBounds();
+}
+
+
+void Car::update() {
+    float currentSpeed = 1.f;
+
+    if (
+        Keyboard::isKeyPressed(Keyboard::Right) &&
+        (sprite.getPosition().x < 1000 - sprite.getGlobalBounds().width)
+
+    )
+    sprite.move(-currentSpeed, 0);
+    if (
+        Keyboard::isKeyPressed(Keyboard::Left) &&
+        (sprite.getPosition().x - sprite.getGlobalBounds().width > 0)
+    )
+        sprite.move(currentSpeed, 0);
 }

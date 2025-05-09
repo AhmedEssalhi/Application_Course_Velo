@@ -63,10 +63,10 @@ int main()
 	}
 
 	std::vector<sf::Sprite> obstacles;
-	std::random_device rd;								// Random number seed
-	std::mt19937 gen(rd());								// Random number generator
-	std::uniform_int_distribution<int> xDist(100, 700); // X range
-	std::uniform_int_distribution<int> yDist(100, 500); // Y range
+	std::random_device rd;								
+	std::mt19937 gen(rd());								
+	std::uniform_int_distribution<int> xDist(100, 700); 
+	std::uniform_int_distribution<int> yDist(100, 500); 
 
 	sf::Sprite obstacle;
 	obstacle.setScale(0.8f, 0.8f);
@@ -106,6 +106,7 @@ int main()
 			vehiculeSprite.move(.8f, 0.f);
 		if (Keyboard::isKeyPressed(Keyboard::Left))
 			vehiculeSprite.move(-.8f, 0.f);
+
 
 		for (auto& obstacle : obstacles)
 		{

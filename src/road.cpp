@@ -1,6 +1,6 @@
-#include "Map.h"
+#include "road.hpp"
 
-Map::Map(const std::string& texturePath, float scrollSpeed) {
+Road::Road(const std::string& texturePath, float scrollSpeed) {
     if (!roadTexture.loadFromFile(texturePath)) {
         throw std::runtime_error("Failed to load texture");
     }
@@ -10,7 +10,8 @@ Map::Map(const std::string& texturePath, float scrollSpeed) {
 
     roadSprite1.setPosition(0, 0);
     roadSprite2.setPosition(0, -roadSprite1.getGlobalBounds().height);
-    
+
+    roadSprite1.setTexture(roadTexture);
     roadSprite1.setScale(
         1000 / roadSprite1.getGlobalBounds().width,
         700 / roadSprite1.getGlobalBounds().height
@@ -23,18 +24,17 @@ Map::Map(const std::string& texturePath, float scrollSpeed) {
     speed = scrollSpeed;
 }
 
-void Map::update() {
+void Road::update() {
     roadSprite1.move(0, speed);
     roadSprite2.move(0, speed);
 
     if (roadSprite1.getPosition().y >= roadSprite1.getGlobalBounds().height)
         roadSprite1.setPosition(0, roadSprite2.getPosition().y - roadSprite1.getGlobalBounds().height);
-
     if (roadSprite2.getPosition().y >= roadSprite2.getGlobalBounds().height)
         roadSprite2.setPosition(0, roadSprite1.getPosition().y - roadSprite2.getGlobalBounds().height);
 }
 
-void Map::draw(sf::RenderWindow& window) {
+void Road::draw(sf::RenderWindow& window) {
     window.draw(roadSprite1);
     window.draw(roadSprite2);
 }
