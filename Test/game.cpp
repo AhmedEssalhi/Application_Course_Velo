@@ -66,6 +66,9 @@ int main() {
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
 			player.move({ -moveSpeed, 0 });
 		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+			player.move({0, moveSpeed});
+		}
 
 		//Event Loop:
 		while (window.pollEvent(Event)) {

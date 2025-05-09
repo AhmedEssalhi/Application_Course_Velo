@@ -1,39 +1,42 @@
 #include "game.hpp"
 
-int main(void)
+Game::Game() : 
+    window(VideoMode(1000, 700), "Pixel Car Game"), 
+    car("../assets/cars/car3.png", 
+        window.getSize().x / 2,
+        window.getSize().y - 100, 
+        5.f
+    ) {}
+
+void Game::run()
 {
-    RenderWindow window(VideoMode(600, 400), "Ball's Up!", Style::Default);
-    window.setFramerateLimit(60);
-
-    RectangleShape rect(Vector2f(25.f, 50.f));
-    rect.setFillColor(Color::Red);
-    rect.setPosition(Vector2f(275.f, 175.f));
-
-    RectangleShape rect2(Vector2f(25.f, 50.f));
-    rect2.setFillColor(Color::Black);
-    rect2.setPosition(Vector2f(500.f, 150.f));
-
-    int collisionCounter = 0;
-    
     while(window.isOpen())
     {
-        Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == Event::Closed || (
-                event.type == event.KeyPressed && event.key.code == Keyboard::Escape
-            ))
-            window.close();
-        }
-        
-        detectCollision(rect, rect2, collisionCounter);
-        window.clear();
-        window.clear(Color::White);
-        update(rect);
-        window.draw(rect);
-        window.draw(rect2);
-        window.display();
+        handleEvent();
+        update();
+        render();
     }
+}
 
-    return 0;
+void Game::handleEvent()
+{
+    Event event;
+    while (window.pollEvent(event))
+    {
+        if ((event.type == Event::Closed) ||
+            Keyboard::isKeyPressed(Keyboard::Escape))
+            window.close();
+    }
+}
+
+void Game::update()
+{
+
+}
+
+void Game::render()
+{
+    window.clear();
+    car.draw(window);
+    window.display();
 }

@@ -6,8 +6,11 @@ void detectCollision(RectangleShape &rect, RectangleShape &rect2, int &collision
     FloatRect r2 = rect2.getGlobalBounds();
     if (r1.intersects(r2))
     {
-        float overlapX = std::min(r1.left + r1.width - r2.left, 
-            r2.left + r2.width - r1.left);
+        //float overlapX = min(r1.left + r1.width - r2.left, 
+            //r2.left + r2.width - r1.left);
+        float overlapX = r1.width;
+        if (r2.left + r2.width >= 600)
+            overlapX *= -1;
         
         rect.move(overlapX, 0.f);
         collisionCounter++;

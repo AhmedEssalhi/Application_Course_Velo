@@ -1,16 +1,29 @@
-#ifndef GAME_H
-#define GAME_H
+#ifndef GAME_HPP
+#define GAME_HPP
 
-#include <iostream>
-#include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
-#include <SFML/Network.hpp>
+#include <iostream>
+#include <string>
+#include "car.hpp"
+
 using namespace sf;
 using namespace std;
 
-void update(RectangleShape &);
-void detectCollision(RectangleShape &, RectangleShape &, int &);
+class Game
+{
+    private:
+    RenderWindow window;
+    Car car;
+
+    public:
+    Game();
+    void run();
+    private:
+    void handleEvent();
+    void update();
+    void render();
+
+};
 
 #endif

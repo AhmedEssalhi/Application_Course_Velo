@@ -2,7 +2,6 @@
 #define GAME_H
 
 #include <c++/13/iostream>
-#include <c++/13/sstream>
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
@@ -10,5 +9,8 @@
 #include <SFML/Network.hpp>
 using namespace sf;
 using namespace std;
+
+void update(RectangleShape &);
+void detectCollision(RectangleShape &, RectangleShape &, int &);
 
 #endif
