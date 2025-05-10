@@ -5,13 +5,13 @@ Game::Game() :
     player(
         window.getSize().x / 2,
         window.getSize().y - 100, 2.f), 
-        road("assets/road/road.png", 1.5f) 
+        road("assets/road/road.png", 2.f) 
 {
     score = 0;
-    obstacleSpawnTime = 1.0f;
+    obstacleSpawnTime = 1.5f;
 
     state = GameState::MainMenu;
-    if (!backgroundTexture.loadFromFile("assets/backgrounds/menu.png")) {
+    if (!backgroundTexture.loadFromFile("assets/backgrounds/1.png")) {
         std::cerr << ("Failed to load background texture") << std::endl;
     }
     backgroundSprite.setTexture(backgroundTexture);
@@ -65,7 +65,11 @@ void Game::handleEvents() {
                     changeState(GameState::Playing);
             } else if (event.key.code == sf::Keyboard::P && state == GameState::Playing) {
                 changeState(GameState::Paused);
+            } else if (event.key.code == sf::Keyboard::P && state == GameState::Paused) {
+                changeState(GameState::Playing);
             } else if (event.key.code == sf::Keyboard::Escape && state == GameState::About) {
+                changeState(GameState::MainMenu);
+            } else if (event.key.code == sf::Keyboard::M && (state == GameState::GameOver || state == GameState::Paused)) {
                 changeState(GameState::MainMenu);
             }
             else if(state == GameState::MainMenu && event.key.code == sf::Keyboard::A)
@@ -79,7 +83,6 @@ void Game::update() {
         road.update();
         player.update();
         score += 1;
-        score %= 33;
         //player.draw(window);
 
         if (obstacleClock.getElapsedTime().asSeconds() > obstacleSpawnTime) {
@@ -127,13 +130,13 @@ void Game::changeState(GameState newState) {
     state = newState;
 
     if (state == GameState::MainMenu) {
-        backgroundTexture.loadFromFile("assets/backgrounds/menu.png");
+        backgroundTexture.loadFromFile("assets/backgrounds/1.png");
     } else if (state == GameState::GameOver) {
-        backgroundTexture.loadFromFile("assets/backgrounds/gameover.png");
+        backgroundTexture.loadFromFile("assets/backgrounds/3.png");
     } else if (state == GameState::Paused) {
-        backgroundTexture.loadFromFile("assets/backgrounds/paused.png");
+        backgroundTexture.loadFromFile("assets/backgrounds/2.png");
     } else if (state == GameState::About) {
-        backgroundTexture.loadFromFile("assets/backgrounds/about.png");
+        backgroundTexture.loadFromFile("assets/backgrounds/4.png");
     }
 }
 

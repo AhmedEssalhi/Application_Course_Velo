@@ -8,6 +8,7 @@ private:
     sf::Texture texture;
     sf::Sprite sprite;
     float speed;
+    
 
 public:
     Obstacle(const std::string& texturePath, float x, float y, float moveSpeed);
