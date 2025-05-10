@@ -1,12 +1,25 @@
 #include "Obstacle.h"
 #include <iostream>
 
-Obstacle::Obstacle(const std::string& texturePath, float x, float y, float moveSpeed) {
-    if (!texture.loadFromFile("assets/obstacle/rock.png")) {
+std::vector<std::string> Obstacle::carModels = {
+    "assets/cars/blueObstacleCar.png",
+    "assets/cars/yelloObstacleCar.png",
+    "assets/cars/greenObstacleCar.png",
+    "assets/cars/orangeObstacleCar.png",
+    "assets/cars/blackObstacleCar.png",
+    "assets/cars/purpleObstacleCar.png",
+    "assets/cars/whiteObstacleCar.png"
+};
+
+Obstacle::Obstacle(float moveSpeed) {
+    std::string selectedCar = carModels[rand() % carModels.size()];
+
+    if (!texture.loadFromFile(selectedCar)) {
         std::cerr << "Failed to load texture" << std::endl;
     }
     sprite.setTexture(texture);
-    sprite.setPosition(x, y);
+    sprite.setPosition(rand() % 500 + 100, -50);
+    sprite.setScale({.35f, .35f});
     speed = moveSpeed;
 }
 

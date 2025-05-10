@@ -1,0 +1,9 @@
+@startuml
+class Game {
+    - Car player
+    - Map road
+    - std::vector<Obstacle> obstacles
+    + run()
+}
+@enduml
+

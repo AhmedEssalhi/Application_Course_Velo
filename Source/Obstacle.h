@@ -8,10 +8,10 @@ private:
     sf::Texture texture;
     sf::Sprite sprite;
     float speed;
-    
+    static std::vector<std::string> carModels;
 
 public:
-    Obstacle(const std::string& texturePath, float x, float y, float moveSpeed);
+    Obstacle(float moveSpeed);
     void update();
     void draw(sf::RenderWindow& window);
     sf::FloatRect getBounds() const;

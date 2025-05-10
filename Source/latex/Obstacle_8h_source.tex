@@ -1,0 +1,27 @@
+\doxysection{Obstacle.\+h}
+\hypertarget{Obstacle_8h_source}{}\label{Obstacle_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ OBSTACLE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ OBSTACLE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classObstacle}{Obstacle}}\ \{}
+\DoxyCodeLine{00007\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00008\ \ \ \ \ sf::Texture\ texture;}
+\DoxyCodeLine{00009\ \ \ \ \ sf::Sprite\ sprite;}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{float}\ speed;}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{static}\ std::vector<std::string>\ carModels;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{classObstacle}{Obstacle}}(\textcolor{keywordtype}{float}\ moveSpeed);}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{void}\ update();}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{void}\ draw(sf::RenderWindow\&\ window);}
+\DoxyCodeLine{00017\ \ \ \ \ sf::FloatRect\ getBounds()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{bool}\ isOffScreen()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{bool}\ checkCollision(\textcolor{keyword}{const}\ sf::FloatRect\&\ playerBounds)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00020\ \};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

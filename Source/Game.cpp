@@ -4,11 +4,11 @@ Game::Game() :
     window(sf::VideoMode(1000, 700), "Pixel Car Game"), 
     player(
         window.getSize().x / 2,
-        window.getSize().y - 100, 2.f), 
-        road("assets/road/road.png", 2.f) 
+        window.getSize().y - 100, 30.f),
+        road("assets/road/road.png", .8f) 
 {
     score = 0;
-    obstacleSpawnTime = 1.5f;
+    obstacleSpawnTime = .8f;
 
     state = GameState::MainMenu;
     if (!backgroundTexture.loadFromFile("assets/backgrounds/1.png")) {
@@ -82,20 +82,21 @@ void Game::update() {
     if (state == GameState::Playing) {
         road.update();
         player.update();
-        score += 1;
+        score += .1f;
         //player.draw(window);
 
         if (obstacleClock.getElapsedTime().asSeconds() > obstacleSpawnTime) {
-            obstacles.push_back(Obstacle("assets/obstacle/rock.png", rand() % 700, -50, .5f));
+            obstacles.push_back(Obstacle(.8f));
             obstacleClock.restart();
         }
 
         for (auto& obstacle : obstacles) {
-            hearts = 3;
             obstacle.update();
             if (obstacle.checkCollision(player.getBounds()))
                 changeState(GameState::GameOver);
         }
+        obstacles.erase(std::remove_if(obstacles.begin(), obstacles.end(),
+        [](const Obstacle& obs) { return obs.isOffScreen(); }), obstacles.end());
     }
 }
 
@@ -108,7 +109,7 @@ void Game::render() {
     } else if (state == GameState::Playing) {
         road.draw(window);
         player.draw(window);
-        scoreText.setString("Score: " + std::to_string(score));
+        scoreText.setString("Score: " + std::to_string(static_cast<int>(score)));
         window.draw(scoreText);
         for (auto& obstacle : obstacles)
             obstacle.draw(window);
