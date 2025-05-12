@@ -4,11 +4,11 @@ Game::Game() :
     window(sf::VideoMode(1000, 700), "Pixel Car Game"), 
     player(
         window.getSize().x / 2,
-        window.getSize().y - 100, 30.f),
-        road("assets/road/road.png", .8f) 
+        window.getSize().y - 100, 3.f),
+        road("assets/road/road.png", 1.f) 
 {
     score = 0;
-    obstacleSpawnTime = .8f;
+    obstacleSpawnTime = 1.f;
 
     state = GameState::MainMenu;
     if (!backgroundTexture.loadFromFile("assets/backgrounds/1.png")) {
@@ -20,8 +20,8 @@ Game::Game() :
     if (!backgroundMusic.openFromFile("assets/audio/musique_fond.ogg")) {
         std::cerr << ("Failed to load background music!") << std::endl; ;
     }
-    backgroundMusic.setLoop(true); // Loop the music
-    backgroundMusic.setVolume(50); // Adjust volume
+    backgroundMusic.setLoop(true);
+    backgroundMusic.setVolume(50);
     backgroundMusic.play();
 
     if (!font.loadFromFile("assets/font/font.ttf")) {
@@ -35,10 +35,7 @@ Game::Game() :
         scoreText.getGlobalBounds().width / 2,
         scoreText.getGlobalBounds().height / 2
     );
-    scoreText.setPosition(
-        100, //- scoreText.getGlobalBounds().width / 2, 
-        20
-    );
+    scoreText.setPosition(100, 20);
 }
 
 void Game::run() {
@@ -61,12 +58,12 @@ void Game::handleEvents() {
             if (event.key.code == sf::Keyboard::Enter) {
                 if (state == GameState::MainMenu || state == GameState::GameOver)
                     resetGame();
+
+            } else if (event.key.code == sf::Keyboard::P) {
+                if (state == GameState::Playing)
+                    changeState(GameState::Paused);
                 else if (state == GameState::Paused)
                     changeState(GameState::Playing);
-            } else if (event.key.code == sf::Keyboard::P && state == GameState::Playing) {
-                changeState(GameState::Paused);
-            } else if (event.key.code == sf::Keyboard::P && state == GameState::Paused) {
-                changeState(GameState::Playing);
             } else if (event.key.code == sf::Keyboard::Escape && state == GameState::About) {
                 changeState(GameState::MainMenu);
             } else if (event.key.code == sf::Keyboard::M && (state == GameState::GameOver || state == GameState::Paused)) {
@@ -83,7 +80,6 @@ void Game::update() {
         road.update();
         player.update();
         score += .1f;
-        //player.draw(window);
 
         if (obstacleClock.getElapsedTime().asSeconds() > obstacleSpawnTime) {
             obstacles.push_back(Obstacle(.8f));
@@ -95,8 +91,6 @@ void Game::update() {
             if (obstacle.checkCollision(player.getBounds()))
                 changeState(GameState::GameOver);
         }
-        obstacles.erase(std::remove_if(obstacles.begin(), obstacles.end(),
-        [](const Obstacle& obs) { return obs.isOffScreen(); }), obstacles.end());
     }
 }
 

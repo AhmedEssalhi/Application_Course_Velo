@@ -21,8 +21,6 @@ private:
     sf::Texture backgroundTexture;
     sf::Sprite backgroundSprite; 
     sf::Music backgroundMusic;
-    sf::SoundBuffer collisionBuffer;
-    sf::Sound collisionSound;
     sf::Font font;
     sf::Text scoreText;
     float score;   

@@ -17,10 +17,12 @@ Car::Car(float x, float y, float moveSpeed) {
 void Car::update() {
     float currentSpeed = speed;
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sprite.getPosition().x > sprite.getGlobalBounds().width)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) &&
+        sprite.getPosition().x > sprite.getGlobalBounds().width)
         sprite.move(-currentSpeed, 0);
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && sprite.getPosition().x < 1000 - sprite.getGlobalBounds().width)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && 
+        sprite.getPosition().x < 1000 - sprite.getGlobalBounds().width)
         sprite.move(currentSpeed, 0);
 }
 
